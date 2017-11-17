@@ -30,7 +30,7 @@ public class MainServer {
         //设置server 处理对象
         acceptor.setHandler(new TimeHandler());
         // 5. 设置Session的对应I/O processor读缓存区大小2048，通常这个参数不需要设置
-        acceptor.getSessionConfig().setReadBufferSize(2048);
+        //acceptor.getSessionConfig().setReadBufferSize(2048);
         // 6. 设置空闲时间， 这里的BOTH_IDLE指EADER_IDLE和WRITER_IDLE都为10秒
         acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
         //设置监听端口
