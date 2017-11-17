@@ -25,6 +25,11 @@ public class TimeHandler extends IoHandlerAdapter{
         cause.printStackTrace();
     }
 
+    @Override
+    public void sessionOpened(IoSession session) throws Exception {
+
+    }
+
     /**
      * 对接收到的消息进行处理
      * @param session
@@ -33,9 +38,9 @@ public class TimeHandler extends IoHandlerAdapter{
      */
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
+        super.messageReceived(session,message);
         String msg = message.toString();
-        Date date = new Date();
-        session.write(date.toString());
+        session.write("已收到消息");
         System.out.println("Message written..."+msg);
     }
 
