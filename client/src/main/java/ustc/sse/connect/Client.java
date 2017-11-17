@@ -22,10 +22,8 @@ public class Client {
         IoConnector connector = new NioSocketConnector();
         connector.setConnectTimeoutMillis(3000);
         connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(
-                new TextLineCodecFactory(Charset.forName("UTF-8"),
-                        LineDelimiter.WINDOWS.getValue(),
-                        LineDelimiter.WINDOWS.getValue())));
-        connector.setHandler(new ClientHandler("你好！\r\n 大家好！"));
+                new TextLineCodecFactory(Charset.forName("UTF-8"))));
+        connector.setHandler(new ClientHandler("this is your msg"));
         connector.connect(new InetSocketAddress("localhost",9000));
     }
 }

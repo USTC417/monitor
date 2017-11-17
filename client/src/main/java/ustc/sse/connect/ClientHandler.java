@@ -23,6 +23,12 @@ public class ClientHandler extends IoHandlerAdapter{
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
+        super.messageReceived(session,message);
         System.out.println(message.toString());
+    }
+
+    @Override
+    public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
+        System.out.println("-------");
     }
 }
