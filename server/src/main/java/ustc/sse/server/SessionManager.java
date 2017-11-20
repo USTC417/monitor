@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * session管理类，用于处理保存session
+ * session管理类，用于处理保存和客户机连接的session
  * 单例模式，一个服务器只需要一个session管理对象
  * created by chenhanping
  * Designer:chenhanping
@@ -51,7 +51,17 @@ public class SessionManager {
         sessions.remove(session);
     }
 
+    /**
+     * 添加一个session到map中
+     * @param id
+     * @param session
+     */
     public void add(Long id, IoSession session){
-        sessions.put(id,session);
+        //如果当前session没有，则存储到字典中
+        if (sessions.get(id) == null){
+            sessions.put(id,session);
+        }
     }
+
+
 }
