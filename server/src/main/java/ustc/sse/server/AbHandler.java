@@ -13,6 +13,11 @@ import org.apache.mina.core.session.IoSession;
  */
 public abstract class AbHandler extends IoHandlerAdapter{
 
+    protected SessionManager manager;
+
+    public AbHandler(){
+        manager = SessionManager.getInstance();
+    }
     /**
      * 处理异常
      * @param session
@@ -27,7 +32,8 @@ public abstract class AbHandler extends IoHandlerAdapter{
 
     @Override
     public void sessionOpened(IoSession session) throws Exception {
-
+        //将session存储到管理器中
+        manager.add(session.getId(),session);
     }
 
     /**

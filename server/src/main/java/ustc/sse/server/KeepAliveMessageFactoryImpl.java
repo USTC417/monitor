@@ -26,10 +26,10 @@ public class KeepAliveMessageFactoryImpl implements KeepAliveMessageFactory{
     }
 
     public Object getRequest(IoSession ioSession) {
-        return request_msg;
+        return "0x11";
     }
 
     public Object getResponse(IoSession ioSession, Object o) {
-        return response_msg;
+        return null;
     }
 }

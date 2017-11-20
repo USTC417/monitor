@@ -29,10 +29,10 @@ public class Client {
                 new TextLineCodecFactory(Charset.forName("UTF-8"))));
         connector.setHandler(new ClientHandler("this is your msg"));
         ClientKeepAliveFactoryImpl keepAliveFactory = new ClientKeepAliveFactoryImpl();
-        KeepAliveFilter filter = new KeepAliveFilter(keepAliveFactory, IdleStatus.READER_IDLE, KeepAliveRequestTimeoutHandler.CLOSE);
+        KeepAliveFilter filter = new KeepAliveFilter(keepAliveFactory, IdleStatus.BOTH_IDLE, KeepAliveRequestTimeoutHandler.CLOSE);
         filter.setRequestInterval(HEART_BEAT);
         filter.setRequestTimeout(5);
-        connector.getFilterChain().addLast("heartbeat",filter);
+        //connector.getFilterChain().addLast("heartbeat",filter);
         connector.connect(new InetSocketAddress("localhost",9000));
 
         //connector.dispose();

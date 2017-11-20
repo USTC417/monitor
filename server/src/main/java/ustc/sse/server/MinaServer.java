@@ -51,11 +51,11 @@ public class MinaServer {
 
         if (isHeartBeat) {
             KeepAliveMessageFactory heartBeatFactory = new KeepAliveMessageFactoryImpl();
-            KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory, IdleStatus.BOTH_IDLE);
+            KeepAliveFilter heartBeat = new KeepAliveFilter(heartBeatFactory, IdleStatus.READER_IDLE);
             heartBeat.setForwardEvent(true);
             //设置心跳频率
             heartBeat.setRequestInterval(HEART_BEAT);
-            acceptor.getFilterChain().addLast("heartbeat", heartBeat);
+            //acceptor.getFilterChain().addLast("heartbeat", heartBeat);
 
         }
         //设置server 处理对象

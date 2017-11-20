@@ -63,5 +63,11 @@ public class SessionManager {
         }
     }
 
+    public void writeAll(Object msg){
+        for (Long id : sessions.keySet()){
+            sessions.get(id).write(msg);
+        }
+    }
+
 
 }

@@ -18,14 +18,11 @@ public class ClientKeepAliveFactoryImpl implements KeepAliveMessageFactory{
     }
 
     public boolean isResponse(IoSession ioSession, Object o) {
-        if (o.toString().equals(response_msg)){
-            return true;
-        }
         return false;
     }
 
     public Object getRequest(IoSession ioSession) {
-        return null;
+        return "0x11";
     }
 
     public Object getResponse(IoSession ioSession, Object o) {

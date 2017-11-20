@@ -16,17 +16,13 @@ import java.util.Date;
 public class ClientHandler extends AbHandler{
 
 
-    // 存储客户机连接session的管理类
-    private SessionManager manager;
-
     public ClientHandler() {
-        manager = SessionManager.getInstance();
+
     }
 
     @Override
     public void handlerMsg(IoSession session,Object msg) {
-        //将session存储到管理器中
-        manager.add(session.getId(),session);
+
         System.out.println(session.getId());
     }
 }

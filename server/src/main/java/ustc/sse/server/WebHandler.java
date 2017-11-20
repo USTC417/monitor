@@ -21,6 +21,8 @@ public class WebHandler extends AbHandler{
         JSONObject response = new JSONObject();
         response.put("cmd_id",cmdId);
         response.put("param","我收到了你的消息");
+        // 通过client id查找对应的session id
+        manager.writeAll(msg);
         session.write(response);
     }
 }
