@@ -10,6 +10,10 @@ package ustc.sse.server;
 public class Main {
 
     public static void main(String args[]){
-        MainServer.server();
+
+        //生产负责连接客户机的服务
+        ServerFactory.createServer(ServerFactory.CLIENT_SERVER).startServer();
+        // 生产负责连接web管理端的服务
+        ServerFactory.createServer(ServerFactory.WEB_SERVER).startServer();
     }
 }

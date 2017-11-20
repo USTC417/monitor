@@ -4,15 +4,14 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
-import java.util.Date;
-
 /**
+ * 处理长连接消息的抽象类
  * created by chenhanping
  * Designer:chenhanping
- * Date:2017/11/4
- * Time:下午2:54
+ * Date:2017/11/17
+ * Time:下午8:19
  */
-public class TimeHandler extends IoHandlerAdapter{
+public abstract class AbHandler extends IoHandlerAdapter{
 
     /**
      * 处理异常
@@ -23,6 +22,7 @@ public class TimeHandler extends IoHandlerAdapter{
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         cause.printStackTrace();
+        session.closeNow();
     }
 
     @Override
@@ -40,17 +40,24 @@ public class TimeHandler extends IoHandlerAdapter{
     public void messageReceived(IoSession session, Object message) throws Exception {
         super.messageReceived(session,message);
         String msg = message.toString();
-        session.write("已收到消息");
+        //调用抽象方法处理消息
+        handlerMsg(session,msg);
         System.out.println("Message written..."+msg);
     }
 
     @Override
     public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
-        System.out.println(session.getIdleCount(status));
     }
 
     @Override
     public void sessionClosed(IoSession session) throws Exception {
         System.out.println("session closed "+session.getRemoteAddress());
+        session.closeNow();
     }
+
+    /**
+     * 处理消息的抽象方法，交由子类实现
+     * @param msg
+     */
+    public abstract void handlerMsg(IoSession session,Object msg);
 }
