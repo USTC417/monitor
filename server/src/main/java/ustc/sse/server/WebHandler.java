@@ -22,7 +22,7 @@ public class WebHandler extends AbHandler{
         response.put("cmd_id",cmdId);
         response.put("param","我收到了你的消息");
         // 通过client id查找对应的session id
-        manager.write(new Long(1),msg);
+        manager.writeAll(msg);
         session.write(response);
     }
 }
