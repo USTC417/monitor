@@ -10,6 +10,15 @@ package ustc.sse.connect;
 public class ClientMain {
 
     public static void main(String args[]){
+//        for (int i=0;i<400;i++){
+//            Thread thread = new Thread(){
+//                @Override
+//                public void run() {
+//                    new Client().client();
+//                }
+//            };
+//            thread.start();
+//        }
         new Client().client();
     }
 }
