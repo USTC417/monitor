@@ -2,11 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!-- 引入外部配置文件 -->
+   <!-- &lt;!&ndash; 引入外部配置文件 -->
     <properties resource="mysql.properties"></properties>
     <typeAliases >
         <!-- 别名方式1，一个一个的配置 type中放置的是类的全路径，alias中放置的是类别名
         <typeAliase type="com.cy.mybatis.beans.UserBean" alias="UserBean"/> -->
+        <typeAlias type="ustc.sse.tools.entity.UserEntity" alias="UserEntity"/>
         <typeAlias type="ustc.sse.tools.entity.ClientEntity" alias="ClientEntity"/>
         <!-- 别名方式2，自动扫描，将JAVA类的类名作为类的类别名 -->
 
@@ -29,8 +30,10 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
         <!-- 告知映射文件方式1，一个一个的配置!-->
         <mapper resource="mapper/ClientMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
