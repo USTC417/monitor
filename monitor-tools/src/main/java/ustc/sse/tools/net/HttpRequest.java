@@ -1,7 +1,11 @@
-package ustc.sse.tool;
+package ustc.sse.tools.net;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,5 +57,26 @@ public class HttpRequest {
             e.printStackTrace();
         }
         return response;
+    }
+
+    public String get(String url){
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+            JSONObject object = new JSONObject();
+            object.put("status",500);
+            object.put("error_msg",e.toString());
+            return object.toString();
+        }
     }
 }

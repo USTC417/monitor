@@ -16,7 +16,9 @@
     </bean>-->
     <mvc:default-servlet-handler/>
     <!--  需要添加该配置 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+
+    </mvc:annotation-driven>
     <context:component-scan base-package="ustc.sse.*"/>
 
 
