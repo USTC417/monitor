@@ -14,11 +14,11 @@ public class ClientMain {
 //            Thread thread = new Thread(){
 //                @Override
 //                public void run() {
-//                    new Client().client();
+//                    new MinaClient().start();
 //                }
 //            };
 //            thread.start();
 //        }
-        new Client().client();
+        new MinaClient().start();
     }
 }

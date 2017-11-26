@@ -19,6 +19,6 @@ public class IndexController {
     @RequestMapping("/index")
     public ModelAndView index(){
         ConnectorManager manager = ConnectorManager.getInstance();
-        return new ModelAndView("index.jsp");
+        return new ModelAndView("login.jsp");
     }
 }
