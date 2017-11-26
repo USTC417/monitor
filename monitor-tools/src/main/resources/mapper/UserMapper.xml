@@ -22,12 +22,22 @@
     <!--#{}中的内容，为占位符，当参数为某个JavaBean时，表示放置该Bean对象的属性值  -->
 
 
-    <resultMap id="UserEntity" type="ustc.sse.tools.entity.UserEntity">
+   <!-- <resultMap id="UserEntity" type="ustc.sse.tools.entity.UserEntity">-->
 
-    </resultMap>
+   <!-- </resultMap>-->
     <select id="queryUser" resultType="UserEntity">
-
         select * from t_user where user_name = #{0} and password =#{1}
     </select>
 
+    <insert id="addUser" parameterType="UserEntity" >
+        insert into t_user(user_name,password) values(#{user_name},#{password})
+    </insert>
+
+    <update id="updateUserById" parameterType="UserEntity">
+        update t_user set user_name = #{user_name},password = #{password} where id = #{id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="java.lang.String" >
+        delete from t_user where id = #{id}
+    </delete>
 </mapper>
