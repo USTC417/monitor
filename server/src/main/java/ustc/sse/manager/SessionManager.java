@@ -1,4 +1,4 @@
-package ustc.sse.server;
+package ustc.sse.manager;
 
 import org.apache.mina.core.session.IoSession;
 
@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionManager {
 
     //存放session的字典，用IoSession 的id作为key
-    private static Map<Long, IoSession> sessions = new ConcurrentHashMap<Long, IoSession>();
+    private static Map<String, IoSession> sessions = new ConcurrentHashMap<String, IoSession>();
     private static SessionManager manager = null;
 
     private SessionManager(){ }
@@ -38,7 +38,7 @@ public class SessionManager {
      * @param msg
      * @return
      */
-    public void write(Long id,Object msg){
+    public void write(String id,Object msg){
         IoSession session = sessions.get(id);
         session.write(msg);
     }
@@ -51,12 +51,13 @@ public class SessionManager {
         sessions.remove(session);
     }
 
+
     /**
      * 添加一个session到map中
      * @param id
      * @param session
      */
-    public void add(Long id, IoSession session){
+    public void add(String id, IoSession session){
         //如果当前session没有，则存储到字典中
         if (sessions.get(id) == null){
             sessions.put(id,session);
@@ -64,7 +65,7 @@ public class SessionManager {
     }
 
     public void writeAll(Object msg){
-        for (Long id : sessions.keySet()){
+        for (String id : sessions.keySet()){
             sessions.get(id).write(msg);
         }
     }

@@ -3,10 +3,11 @@ package ustc.sse.server;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
+import ustc.sse.manager.SessionManager;
 
 /**
  * 处理长连接消息的抽象类
- * created by chenhanping
+ * created y chenhanping
  * Designer:chenhanping
  * Date:2017/11/17
  * Time:下午8:19
@@ -33,7 +34,6 @@ public abstract class AbHandler extends IoHandlerAdapter{
     @Override
     public void sessionOpened(IoSession session) throws Exception {
         //将session存储到管理器中
-        manager.add(session.getId(),session);
     }
 
     /**
