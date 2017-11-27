@@ -21,7 +21,6 @@ public class LoginController {
 
 
    @RequestMapping("/LoginIn")
-   @ResponseBody
     public String checkLogin(HttpServletRequest request, HttpSession session) throws Exception{
        String username = request.getParameter("username");
        String password = request.getParameter("password");
@@ -32,9 +31,9 @@ public class LoginController {
 
        if (user!= null){
            session.setAttribute("user",user);
-           return "1";
+           return "main.html";
        }else{
-           return "login.jsp";
+           return "login.html";
        }
 
     }
@@ -42,7 +41,7 @@ public class LoginController {
     @RequestMapping("/LoginOut")
     public String loginOut(HttpSession session) throws Exception{
        session.removeAttribute("user");
-       return "login.jsp";
+       return "login.html";
     }
 
 }
