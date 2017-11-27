@@ -3,6 +3,7 @@ package ustc.sse.server;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
+import ustc.sse.context.AppContext;
 import ustc.sse.manager.SessionManager;
 
 /**
@@ -34,6 +35,7 @@ public abstract class AbHandler extends IoHandlerAdapter{
     @Override
     public void sessionOpened(IoSession session) throws Exception {
         //将session存储到管理器中
+
     }
 
     /**
@@ -65,5 +67,5 @@ public abstract class AbHandler extends IoHandlerAdapter{
      * 处理消息的抽象方法，交由子类实现
      * @param msg
      */
-    public abstract void handlerMsg(IoSession session,Object msg);
+    public abstract void handlerMsg(IoSession session,String msg);
 }

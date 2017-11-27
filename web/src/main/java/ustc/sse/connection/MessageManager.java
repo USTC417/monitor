@@ -1,5 +1,7 @@
 package ustc.sse.connection;
 
+import ustc.sse.tool.AppContext;
+
 /**
  * created by chenhanping
  * Designer:chenhanping
@@ -16,6 +18,7 @@ public class MessageManager {
      * @return 回复
      */
     public Object sendMessage(Object msg,String cmdId){
+
         manager.write(msg);
         return "200";
     }
