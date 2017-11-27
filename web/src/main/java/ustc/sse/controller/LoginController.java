@@ -29,12 +29,12 @@ public class LoginController {
        UserDao dao = new UserDao();
 
        UserEntity user = dao.queryUserByNameandPwd(username,password);
-       System.out.println(user);
+
        if (user!= null){
            session.setAttribute("user",user);
            return "1";
        }else{
-           return "-1";
+           return "login.jsp";
        }
 
     }
