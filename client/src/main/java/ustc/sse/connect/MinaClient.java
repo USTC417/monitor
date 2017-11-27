@@ -43,6 +43,7 @@ public class MinaClient {
         JSONObject data = new JSONObject();
         data.put("client_id",clientId);
         object.put("data",data);
+        System.out.println(object);
         connector.setHandler(new ClientHandler(object.toString()));
         ClientKeepAliveFactoryImpl keepAliveFactory = new ClientKeepAliveFactoryImpl();
         KeepAliveFilter filter = new KeepAliveFilter(keepAliveFactory, IdleStatus.BOTH_IDLE, KeepAliveRequestTimeoutHandler.CLOSE);
@@ -71,7 +72,6 @@ public class MinaClient {
         data.put("ram",8.0);
         data.put("storage",256.5);
         params.put("data",data.toString());
-        System.out.println(params);
         return params;
     }
 
@@ -79,6 +79,11 @@ public class MinaClient {
 
         Map<String,String> params = createParam();
         HttpRequest request = new HttpRequest();
-        clientId = request.sendRequest("http://localhost:8080/init",params);
+        String response = request.sendRequest("http://localhost:8080/init",params);
+        JSONObject object = new JSONObject(response);
+        if (object.getDouble("status") == 200){
+            //成功
+            clientId = object.getString("uuid");
+        }
     }
 }
