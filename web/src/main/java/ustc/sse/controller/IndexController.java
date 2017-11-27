@@ -16,9 +16,9 @@ import javax.annotation.Resource;
 @Controller
 public class IndexController {
 
-   /* @RequestMapping("/index")
+   @RequestMapping("/index")
     public ModelAndView index(){
-        //ConnectorManager manager = ConnectorManager.getInstance();
-        return new ModelAndView("login.jsp");
-    }*/
+        ConnectorManager manager = ConnectorManager.getInstance();
+        return new ModelAndView("login.html");
+    }
 }
