@@ -48,51 +48,7 @@ public class ConnectorManager {
     }
 
 
-    /**
-     * 发送消息，并返回消息的回复，如果没有3s内回复内，则算作没有及时回复，返回null
-     * @param msg
-     * @param cmdId
-     * @return 回复
-     */
-    public Object sendMessage(Object msg,String cmdId){
-        manager.write(msg);
-        while (!timeOut()){
-            // 没有超时，则查询消息队列中是否有指定命令id的回复消息
-            Object response = null;
-            if ((response = manager.poolMessage(cmdId))!=null){
-                count = 0;
-                return response;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 判断是否超时
-     * @return
-     */
-    private boolean timeOut(){
-        try {
-            //停顿0.01s
-            Thread.sleep(10);
-            if (count*0.01 < 3){
-                // 3秒以内不算超时
-                count++;
-                return false;
-            }
-            else {
-                //超时
-                count = 0;
-                return true;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        count = 0;
-        return false;
-    }
 
     public static final int PORT = 9001;
-    private int count = 0;
 
 }

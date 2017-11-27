@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ustc.sse.tool.AppContext.messageQueue;
+
 /**
  * 与mina连接的session 管理对象
  * created by chenhanping
@@ -15,7 +17,6 @@ import java.util.Map;
 public class SessionManager {
 
     // 消息队列，用于存放集群服务器发回的消息
-    private static Map<String,Object> messageQueue = new HashMap<String, Object>();
     private static IoSession session = null;
     private static SessionManager manager = null;
     private SessionManager(){

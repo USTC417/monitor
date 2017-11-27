@@ -1,8 +1,8 @@
 package ustc.sse.server;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.mina.core.session.IoSession;
+import org.json.JSONObject;
+import ustc.sse.context.AppContext;
 import ustc.sse.tools.dao.ClientDao;
 
 /**
@@ -14,18 +14,19 @@ import ustc.sse.tools.dao.ClientDao;
  */
 public class WebHandler extends AbHandler{
 
-    public void handlerMsg(IoSession session, Object msg) {
 
-        System.out.println(msg);
-        JSONObject jsonObject = JSON.parseObject((String)msg);
-        String cmdId = jsonObject.getString("cmd_id");
-        JSONObject response = new JSONObject();
-        response.put("cmd_id",cmdId);
-        response.put("param","我收到了你的消息");
+    @Override
+    public void sessionOpened(IoSession session) throws Exception {
+        // 将web 端的连接session存储下来
+        AppContext.webSession = session;
+    }
+
+    public void handlerMsg(IoSession session, String msg) {
+
+        System.out.println("web端发来的消息是："+msg);
+        JSONObject jsonObject = new JSONObject(msg);
         String id = jsonObject.getString("client_id");
-        response.put("id",id);
         // 通过client id查找对应的session
         manager.write(id,msg);
-        session.write(response);
     }
 }
