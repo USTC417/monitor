@@ -3,6 +3,8 @@ package ustc.sse.tools.mapper;
 
 import ustc.sse.tools.entity.ClientEntity;
 
+import java.util.List;
+
 /**
  * 客户机的数据库映射接口
  * created by chenhanping
@@ -36,5 +38,11 @@ public interface ClientMapper {
      * @param clientId
      */
     public ClientEntity queryInfo(String clientId);
+
+    /**
+     * 查询客户机列表
+     * @return
+     */
+    public List<ClientEntity> queryClientList(String status);
 }
 
