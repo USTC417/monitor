@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import ustc.sse.tools.entity.ClientEntity;
 import ustc.sse.tools.mapper.ClientMapper;
 
+import java.util.List;
+
 /**
  * created by chenhanping
  * Designer:chenhanping
@@ -29,4 +31,5 @@ public class ClientDao {
         return mapper.queryInfo(id);
     }
 
+    public List<ClientEntity> queryClientList(String status){ return mapper.queryClientList(status);}
 }
