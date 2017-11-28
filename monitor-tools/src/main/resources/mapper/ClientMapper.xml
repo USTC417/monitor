@@ -59,5 +59,8 @@
         SELECT * FROM t_client_info WHERE id = #{0}
     </select>
 
+    <select id="queryClientList" resultMap="ClientMap">
+        select * FROM t_client_info where client_status = #{0}
+    </select>
 
 </mapper>
