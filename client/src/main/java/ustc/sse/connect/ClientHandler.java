@@ -36,5 +36,14 @@ public class ClientHandler extends IoHandlerAdapter{
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         System.out.println("-------"+cause.toString());
+        AppContext.session=null;
+        new MinaClient().start();
+    }
+
+    @Override
+    public void sessionClosed(IoSession session) throws Exception {
+        super.sessionClosed(session);
+        AppContext.session=null;
+        new MinaClient().start();
     }
 }
