@@ -1,10 +1,11 @@
 package ustc.sse.context;
 
 import org.apache.mina.core.session.IoSession;
-import ustc.sse.manager.SessionManager;
+import org.java_websocket.WebSocket;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * 静态数据
@@ -22,5 +23,5 @@ public class AppContext {
     public static Map<String, IoSession> sessions = new ConcurrentHashMap<String, IoSession>();
 
     // web端的websocket
-    public static IoSession webSocket;
+    public static CopyOnWriteArraySet<WebSocket> webSocketSet = new CopyOnWriteArraySet<WebSocket>();
 }
