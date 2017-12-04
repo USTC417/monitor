@@ -1,6 +1,8 @@
 package ustc.sse.handler;
 
+import com.sun.tools.internal.xjc.api.util.ApClassLoader;
 import org.apache.mina.core.session.IoSession;
+import org.java_websocket.WebSocket;
 import org.json.JSONObject;
 import ustc.sse.context.AppContext;
 
@@ -39,7 +41,16 @@ public class ClientHandler extends AbHandler{
             JSONObject object = new JSONObject();
             object.put("client_id",clientId);
             object.put("status","1");
-            AppContext.webSocket.write(object);
+            try {
+                for (WebSocket web : AppContext.webSocketSet){
+                    web.send(object.toString());
+                }
+                System.out.println("发送成功");
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
+
+
         }else {
             // 回复命令的消息，直接转发web端
             AppContext.webSession.write(data);
@@ -58,6 +69,8 @@ public class ClientHandler extends AbHandler{
                 break;
             }
         }
-        AppContext.webSocket.write(object);
+        for (WebSocket web : AppContext.webSocketSet){
+            web.send(object.toString());
+        }
     }
 }

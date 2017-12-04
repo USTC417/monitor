@@ -2,7 +2,6 @@ package ustc.sse.server;
 
 import ustc.sse.handler.ClientHandler;
 import ustc.sse.handler.WebHandler;
-import ustc.sse.handler.WebSocketHandler;
 
 /**
  * 长连接服务工厂，用于创建监听服务
@@ -41,9 +40,7 @@ public class ServerFactory {
         else if (type == WEB_SERVER){
             return new MinaServer(new WebHandler(), WEB_PORT,false);
         }
-        else if (type == WEB_SOCKET){
-            return new MinaServer(new WebSocketHandler(),WEB_SOCKET_PORT,false);
-        }
+
         return null;
     }
 
