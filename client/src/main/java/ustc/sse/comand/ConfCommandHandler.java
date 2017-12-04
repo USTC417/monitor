@@ -14,7 +14,6 @@ public class ConfCommandHandler extends SupperCommandHandler implements CommandH
     public ConfCommandHandler(String cmdId, String cmd, String data) {
         super(cmdId, cmd, data);
     }
-
     public Object handler() {
         JSONObject object = new JSONObject();
         JSONObject jsonData = new JSONObject();
