@@ -26,19 +26,42 @@
  
  <body>
 
-   
 
+ <script type="text/javascript">
+     window.onload=function() {
+         var ws;
+         ws = new WebSocket("ws://localhost:9003");
+         ws.onopen = function () {
+
+         };
+         ws.onmessage = function (e) {
+             var msg = JSON.parse(e.data);
+             var client_id = msg.client_id;
+             var status = msg.status;
+             if (status == 1){
+                 alert("客户机"+client_id+"连接了");
+
+             }else if (status == 0){
+                 alert("客户机"+client_id+"断线了");
+			 }
+         };
+         ws.onclose = function () {
+             print("close")
+             ws = null;
+         };
+     };
+ </script>
 
 
 <nav class="navbar navbar-default navbar-inverse " role="navigation">
 				<div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">集群监控</a>
                 </div>
                 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="#">标题一</a>
+                            <a href="#">集群列表</a>
                         </li>
                         <li>
                             <a href="#">标题二</a>
