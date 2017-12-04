@@ -3,7 +3,6 @@ package ustc.sse.connect;
 import org.apache.mina.core.service.IoConnector;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.LineDelimiter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
@@ -25,7 +24,7 @@ import java.util.Map;
 public class MinaClient {
 
     private int HEART_BEAT = 10;
-    private String clientId;
+    public static String clientId=null;
 
     public MinaClient(){
         init();
@@ -77,13 +76,15 @@ public class MinaClient {
 
     public void init(){
 
-        Map<String,String> params = createParam();
-        HttpRequest request = new HttpRequest();
-        String response = request.sendRequest("http://localhost:8080/init",params);
-        JSONObject object = new JSONObject(response);
-        if (object.getDouble("status") == 200){
-            //成功
-            clientId = object.getString("uuid");
+        if(clientId==null) {
+            Map<String, String> params = createParam();
+            HttpRequest request = new HttpRequest();
+            String response = request.sendRequest("http://localhost:8080/init", params);
+            JSONObject object = new JSONObject(response);
+            if (object.getDouble("status") == 200) {
+                //成功
+                clientId = object.getString("uuid");
+            }
         }
     }
 }
