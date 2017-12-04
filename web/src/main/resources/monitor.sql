@@ -19,19 +19,20 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for t_client_info
 -- ----------------------------
 DROP TABLE IF EXISTS `t_client_info`;
-CREATE TABLE `t_client_info` (
-  `id` varchar(20) DEFAULT NULL COMMENT '客户机id',
-  `client_system` varchar(10) DEFAULT NULL COMMENT '客户机操作系统名称',
-  `client_name` varchar(20) DEFAULT NULL COMMENT '客户机名称',
-  `client_ip` varchar(20) DEFAULT NULL COMMENT '客户机ip',
-  `client_cpu` varchar(20) DEFAULT NULL COMMENT '客户机CPU型号',
-  `client_storage` float DEFAULT NULL COMMENT '客户机硬盘容量（GB）',
-  `client_ram` float DEFAULT NULL COMMENT '客户机运行内存（GB）',
-  `client_log_path` varchar(20) DEFAULT NULL COMMENT '客户机日志在服务器上的存储路径',
-  `client_create_time` date DEFAULT NULL COMMENT '客户机连接服务器的日期',
-  `client_update_time` date DEFAULT NULL COMMENT '客户机最近一次更新日期',
-  `client_status` int(11) DEFAULT NULL COMMENT '客户机状态 0断线 1在线'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `monitor`.`<table_name>` (
+	`id` varchar(50) NOT NULL COMMENT '客户机id',
+	`client_system` varchar(50) DEFAULT NULL COMMENT '客户机操作系统名称',
+	`client_name` varchar(50) DEFAULT NULL COMMENT '客户机名称',
+	`client_ip` varchar(50) DEFAULT NULL COMMENT '客户机ip',
+	`client_cpu` varchar(20) DEFAULT NULL COMMENT '客户机CPU型号',
+	`client_storage` float DEFAULT NULL COMMENT '客户机硬盘容量（GB）',
+	`client_ram` float DEFAULT NULL COMMENT '客户机运行内存（GB）',
+	`client_log_path` varchar(100) DEFAULT NULL COMMENT '客户机日志在服务器上的存储路径',
+	`client_create_time` date DEFAULT NULL COMMENT '客户机连接服务器的日期',
+	`client_update_time` date DEFAULT NULL COMMENT '客户机最近一次更新日期',
+	`client_status` int(11) DEFAULT NULL COMMENT '客户机状态 0断线 1在线',
+	PRIMARY KEY (`id`)
+) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
 
 -- ----------------------------
 -- Records of t_client_info
