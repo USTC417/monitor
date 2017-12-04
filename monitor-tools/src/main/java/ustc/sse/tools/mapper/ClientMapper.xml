@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ustc.sse.tools.mapper.ClientMapper">
+    <!-- 自定义返回结果集 -->
+    <resultMap id="ClientMap" type="ClientEntity">
+        <result property="clientSystem" column="client_system" javaType="java.lang.String"></result>
+        <result property="clientName" column="client_name" javaType="java.lang.String"></result>
+        <result property="clientId" column="id" javaType="java.lang.String"></result>
+        <result property="clientIp" column="client_ip" javaType="java.lang.String"></result>
+        <result property="clientCpu" column="client_cpu" javaType="java.lang.String"></result>
+        <result property="clientStorage" column="client_storage" javaType="java.lang.Float"></result>
+        <result property="createTime" column="client_create_time" javaType="java.util.Date"></result>
+        <result property="updateTime" column="client_update_time" javaType="java.util.Date"></result>
+        <result property="clientRam" column="client_ram" javaType="java.lang.Float"></result>
+        <result property="clientLogPath" column="client_log_path" javaType="java.lang.String"></result>
+        <result property="status" column="client_status" javaType="java.lang.Integer"></result>
+    </resultMap>
+    <!-- 在各种标签中的id属性必须和接口中的方法名相同 ， id属性值必须是唯一的，不能够重复使用。parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型-->
+    <!-- useGeneratedKeys：（ 仅 对 insert 有 用 ） 这 会 告 诉 MyBatis 使 用 JDBC 的getGeneratedKeys
+                方法来取出由数据（比如：像 MySQL 和 SQLServer 这样的数据库管理系统的自动递增字段）内部生成的主键。默认值： false。 -->
+    <!--keyProperty： （仅对 insert有用）标记一个属性， MyBatis 会通过 getGeneratedKeys或者通过 insert 语句的 selectKey 子元素设置它的值。默认：不设置。 -->
+    <!--#{}中的内容，为占位符，当参数为某个JavaBean时，表示放置该Bean对象的属性值  -->
+
+
+    <insert id="add"  keyProperty="clientId">
+        insert into t_client_info (
+        id,
+        client_system,
+        client_name,
+        client_ip,
+        client_cpu,
+        client_storage,
+        client_create_time,
+        client_update_time,
+        client_ram,
+        client_log_path,
+        client_status
+         )
+        values (
+        #{clientId},
+        #{clientSystem},
+        #{clientName},
+        #{clientIp},
+        #{clientCpu},
+        #{clientStorage},
+        #{createTime},
+        #{updateTime},
+        #{clientRam},
+        #{clientLogPath},
+        #{status}
+        )
+    </insert>
+
+    <update id="updateAccessToken" parameterType="String" >
+        update t_service_oauth set access_token = #{1} where client_id = #{0}
+    </update>
+
+    <select id="queryInfo" parameterType="String" resultMap="ClientMap">
+        SELECT * FROM t_client_info WHERE id = #{0}
+    </select>
+
+
+</mapper>

@@ -15,6 +15,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class AppContext {
 
+    // web端长连接
     public static IoSession webSession;
+
+    // 客户机的连接session
     public static Map<String, IoSession> sessions = new ConcurrentHashMap<String, IoSession>();
+
+    // web端的websocket
+    public static IoSession webSocket;
 }

@@ -3,6 +3,7 @@ package ustc.sse.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ustc.sse.tools.dao.ClientDao;
+import ustc.sse.tools.entity.ClientEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,5 +25,29 @@ public class ClientListController {
         session.setAttribute("clients",clients);
 
         return "basic_table.jsp";
+    }
+
+    @RequestMapping("/clientClose")
+    public String clientClose(HttpServletRequest request){
+        String clientId = request.getParameter("clientId");
+        //处理客户机关机操作
+        return "basic_table.jsp";
+    }
+
+    @RequestMapping("/clientRestart")
+    public String clientRestart(HttpServletRequest request){
+        String clientId = request.getParameter("clientId");
+        //处理客户机重启
+        return "basic_table.jsp";
+    }
+
+    @RequestMapping("/clientInfo")
+    public String clientInfo(HttpServletRequest request ){
+        String clientId = request.getParameter("clientId");
+        //处理查询客户机信息
+        ClientDao dao = new ClientDao();
+        ClientEntity entity = dao.queryEntity(clientId);
+        System.out.println("客户机信息:"+entity);
+        return "specific_table.jsp";
     }
 }
