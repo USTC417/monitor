@@ -15,5 +15,7 @@ public class Main {
         ServerFactory.createServer(ServerFactory.CLIENT_SERVER).startServer();
         // 生产负责连接web管理端的服务
         ServerFactory.createServer(ServerFactory.WEB_SERVER).startServer();
+        // websocket
+        ServerFactory.createServer(ServerFactory.WEB_SOCKET).startServer();
     }
 }
