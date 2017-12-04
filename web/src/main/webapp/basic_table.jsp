@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -21,7 +23,6 @@
     
 <link href="css/style.css" rel="stylesheet">
 
- 
  </head>
  
  <body>
@@ -97,6 +98,7 @@
                 </div>
                 
 </nav>
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -123,91 +125,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							<a href="specific_table.html">192.168.1.1</a>
-						</td>
-						<td>
-							通信正常
-						</td>
-						<td>
-							<div class="btn-group">
-							 <button class="btn btn-default">操作</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-								<ul class="dropdown-menu">
-									<li>
-						 				<a href="#">重启</a>
-									</li>
-									<li class="disabled">
-										 <a href="#">暂停</a>
-									</li>
-									<li class="divider">
-									</li>
-									<li>
-						 				<a href="#">待定</a>
-									</li>
-								</ul>
-			</div>
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							192.168.1.1
-						</td>
-						<td>
-							通信正常
-						</td>
-						<td>
-							Approved
-						</td>
-					</tr>
-					<tr class="error">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+					<c:forEach items="${clients}" var="client">
+						<tr>
+							<td style="vertical-align: middle">
+								${client.clientId}
+							</td>
+							<td style="vertical-align: middle">
+								<a href="clientInfo?clientId=${client.clientId}">${client.clientName}</a>
+							</td>
+							<td style="vertical-align: middle">
+								${client.status ==1 ? '在线':'掉线'}
+							</td>
+							<td>
+								<div class="btn-group">
+									<button class="btn btn-default">操作</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+									<ul class="dropdown-menu">
+										<li >
+											<a href="clientInfo?clientId=${client.clientId}">详情</a>
+										</li>
+										<li>
+											<a href="clientRestart?clientId=${client.clientId}">重启</a>
+										</li>
+										<li class="divider">
+										</li>
+										<li>
+											<a href="clientClose?clientId=${client.clientId}">关机</a>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+
 				</tbody>
 			</table>
 			<ul class="pagination">
@@ -248,7 +197,8 @@
 <script src="js/bootstrap.min.js"></script>
     
 <script src="js/scripts.js"></script>
- 
+
+ <script src="js/basic_table.js"></script>
 
  </body>
 

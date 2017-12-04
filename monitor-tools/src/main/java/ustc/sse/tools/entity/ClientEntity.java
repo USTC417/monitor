@@ -120,5 +120,20 @@ public class ClientEntity {
         this.clientLogPath = clientLogPath;
     }
 
-
+    @Override
+    public String toString() {
+        return "ClientEntity{" +
+                "clientId='" + clientId + '\'' +
+                ", clientSystem='" + clientSystem + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", clientIp='" + clientIp + '\'' +
+                ", clientCpu='" + clientCpu + '\'' +
+                ", clientStorage=" + clientStorage +
+                ", clientRam=" + clientRam +
+                ", clientLogPath='" + clientLogPath + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", status=" + status +
+                '}';
+    }
 }
