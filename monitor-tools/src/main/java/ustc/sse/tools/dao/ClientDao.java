@@ -6,11 +6,9 @@ import ustc.sse.tools.mapper.ClientMapper;
 
 import java.util.List;
 
-/**
- * created by chenhanping
- * Designer:chenhanping
- * Date:2017/11/24
- * Time:上午8:47
+/** 客户端操作dao
+ * 作者：陈志国
+ * 时间：2017/11/26
  */
 public class ClientDao {
 
@@ -27,9 +25,19 @@ public class ClientDao {
         session.commit();
     }
 
+    /**
+     * 根据客户端的id查询客户端的详细信息
+     * @param id
+     * @return
+     */
     public ClientEntity queryEntity(String id){
         return mapper.queryInfo(id);
     }
 
+    /**
+     * 查询客户端列表
+     * @param status
+     * @return
+     */
     public List<ClientEntity> queryClientList(String status){ return mapper.queryClientList(status);}
 }
