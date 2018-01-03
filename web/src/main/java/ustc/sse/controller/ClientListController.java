@@ -2,6 +2,7 @@ package ustc.sse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import ustc.sse.connection.MessageManager;
 import ustc.sse.tools.dao.ClientDao;
 import ustc.sse.tools.entity.ClientEntity;
@@ -47,12 +48,20 @@ public class ClientListController {
     }
 
     @RequestMapping("/clientInfo")
-    public String clientInfo(HttpServletRequest request ){
+    public ModelAndView clientInfo(HttpServletRequest request ){
         String clientId = request.getParameter("clientId");
         //处理查询客户机信息
         ClientDao dao = new ClientDao();
         ClientEntity entity = dao.queryEntity(clientId);
         System.out.println("客户机信息:"+entity);
-        return "specific_table.jsp";
+        ModelAndView view = new ModelAndView( "specific_table.jsp");
+        view.addObject("clientId",entity.getClientId());
+        view.addObject("clientName",entity.getClientName());
+        view.addObject("clientIp",entity.getClientCpu());
+        view.addObject("clientCpu",entity.getClientCpu());
+        view.addObject("clientStorage",entity.getClientStorage());
+        view.addObject("clientRam",entity.getClientRam());
+        view.addObject("clientLogPath",entity.getClientLogPath());
+        return view;
     }
 }
