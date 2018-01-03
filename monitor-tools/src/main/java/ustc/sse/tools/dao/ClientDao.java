@@ -44,7 +44,8 @@ public class ClientDao {
 
     /**
      * 更新客户端的状态
-     * @param entity
+     * @param status
+     * @param clientId
      * @return
      */
     public int updateClient(int status,String clientId){

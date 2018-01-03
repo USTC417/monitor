@@ -86,7 +86,7 @@
 					主机名
 				</dt>
 				<dd>
-					A description list is perfect for defining terms.
+					${clientId}
 				</dd>
 				<dt>
 					IP地址

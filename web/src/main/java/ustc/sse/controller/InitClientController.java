@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ustc.sse.service.InitService;
-import ustc.sse.tools.util.Util;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-/**
+/** 第一次连接客户端 返回一个标识符
  * created by chenhanping
- * Designer:chenhanping
+ * Deigner:chenhanping
  * Date:2017/11/24
  * Time:上午11:55
  */

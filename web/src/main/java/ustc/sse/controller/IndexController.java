@@ -5,11 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ustc.sse.connection.ConnectorManager;
 
-import javax.annotation.Resource;
-
-/**
+/** 启动位置
  * created by chenhanping
- * Designer:chenhanping
+ * Desiner:chenhanping
  * Date:2017/11/20
  * Time:上午12:48
  */

@@ -2,9 +2,6 @@ package ustc.sse.connection;
 import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static ustc.sse.tool.AppContext.messageQueue;
 
 /**
@@ -36,7 +33,7 @@ public class SessionManager {
 
     public void write(Object msg){
         System.out.println("给服务器发消息了");
-        session.write(msg);
+        session.write(msg);session.write(msg);
     }
 
     public void addMsgToQueue(Object msg){
