@@ -40,4 +40,16 @@ public class ClientDao {
      * @return
      */
     public List<ClientEntity> queryClientList(String status){ return mapper.queryClientList(status);}
+
+
+    /**
+     * 更新客户端的状态
+     * @param entity
+     * @return
+     */
+    public int updateClient(int status,String clientId){
+        int s = mapper.update(status, clientId);
+        session.commit();
+        return s;
+    }
 }
