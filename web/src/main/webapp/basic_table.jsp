@@ -39,6 +39,7 @@
              var msg = JSON.parse(e.data);
              var client_id = msg.client_id;
              var status = msg.status;
+             location.reload();
              if (status == 1){
                  alert("客户机"+client_id+"连接了");
 
@@ -54,7 +55,7 @@
  </script>
 
 
-<nav class="navbar navbar-default navbar-inverse " role="navigation">
+<nav class="navbar navbar-fixed-top navbar-inverse " role="navigation">
 				<div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">集群监控</a>
                 </div>
@@ -63,9 +64,6 @@
                     <ul class="nav navbar-nav">
                         <li class="active">
                             <a href="#">集群列表</a>
-                        </li>
-                        <li>
-                            <a href="#">标题二</a>
                         </li>
                         
                     </ul>
@@ -98,8 +96,12 @@
                 </div>
                 
 </nav>
-
-<div class="container">
+ <style>
+	 #top{
+		 padding-top: 70px;
+	 }
+ </style>
+<div class="container" id="top">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			

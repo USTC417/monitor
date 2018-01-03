@@ -27,53 +27,54 @@
  </head>
  
  <body>
-<div class="container">
+
+ <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+	 <div class="navbar-header">
+		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">集群监控</a>
+	 </div>
+
+	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		 <ul class="nav navbar-nav">
+
+
+		 </ul>
+
+		 <ul class="nav navbar-nav navbar-right">
+
+			 <li class="dropdown">
+				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户名<strong class="caret"></strong></a>
+				 <ul class="dropdown-menu">
+					 <li>
+						 <a href="#">个人中心</a>
+					 </li>
+					 <li>
+						 <a href="password.html">账号设置</a>
+					 </li>
+
+					 <li class="divider">
+					 </li>
+					 <li>
+						 <a href="login.html">退出</a>
+					 </li>
+				 </ul>
+			 </li>
+		 </ul>
+		 <form class="navbar-form navbar-right" role="search">
+			 <div class="form-group">
+				 <input type="text" class="form-control" />
+			 </div> <button type="submit" class="btn btn-default">Submit</button>
+		 </form>
+	 </div>
+
+ </nav>
+ <style>
+	 #top{
+		 padding-top: 70px;
+	 }
+ </style>
+<div class="container" id="top">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<nav class="navbar navbar-default navbar-inverse" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">标题一</a>
-						</li>
-						<li>
-							 <a href="#">标题二</a>
-						</li>
-						
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right">
-						
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户名<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">个人中心</a>
-								</li>
-								<li>
-									 <a href="password.html">账号设置</a>
-								</li>
-								
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="login.html">退出</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Submit</button>
-					</form>
-				</div>
-				
-			</nav>
 		</div>
 	</div>
 	<div class="container">
