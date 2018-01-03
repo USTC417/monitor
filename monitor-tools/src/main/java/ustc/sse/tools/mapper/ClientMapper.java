@@ -22,10 +22,10 @@ public interface ClientMapper {
 
     /**
      * 更新客户机信息
-     * @param entity 修改之后的客户机实体
+     * @param status 修改之后的客户机状态
      * @param clientId 需要修改的客户机的id
      */
-    public void update(ClientEntity entity, String clientId);
+    public int update(int status, String clientId);
 
     /**
      * 删除一个客户机信息
