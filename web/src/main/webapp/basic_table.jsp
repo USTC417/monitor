@@ -22,13 +22,14 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
     
 <link href="css/style.css" rel="stylesheet">
-
+<script type="text/javascript" src="./js/jquery.min.js"/>
  </head>
  
  <body>
 
 
  <script type="text/javascript">
+	 var html="";
      window.onload=function() {
          var ws;
          ws = new WebSocket("ws://localhost:9003");
@@ -41,16 +42,54 @@
              var status = msg.status;
              if (status == 1){
                  alert("客户机"+client_id+"连接了");
+				 html ="<tr>\n" +
+                    "\t\t\t\t\t\t\t<td style=\"vertical-align: middle\">\n" +
+                    client_id +
+                    "\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t\t<td style=\"vertical-align: middle\">\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"clientInfo?clientId="+clientId+">"+client_id+"</a>\n" +
+                    "\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t\t<td style=\"vertical-align: middle\">\n" +
+                    "\t\t\t\t\t\t\t\t${ '在线'}\n" +
+                    "\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t\t<td>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"btn-group\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<button class=\"btn btn-default\">操作</button> <button data-toggle=\"dropdown\" class=\"btn btn-default dropdown-toggle\"><span class=\"caret\"></span></button>\n" +
+                    "\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<li >\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"clientInfo?clientId="+client_id+">详情</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<li>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"clientRestart?clientId="+client_id+">重启</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<li class=\"divider\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<li>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"clientClose?clientId="+client_id+">关机</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                    "\t\t\t\t\t\t\t\t\t</ul>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t</tr>";
+                    html += $("table tbody").html();
 
+                 $("table tbody").innerHTML = html;
+                 location.reload();
              }else if (status == 0){
                  alert("客户机"+client_id+"断线了");
 			 }
+
+
          };
          ws.onclose = function () {
              print("close")
              ws = null;
          };
      };
+//	 $(function(){
+ //        if(html!="")
+             location.reload();
+//	 });
  </script>
 
 
