@@ -1,10 +1,10 @@
 package ustc.sse.handler;
 
-import com.sun.tools.internal.xjc.api.util.ApClassLoader;
 import org.apache.mina.core.session.IoSession;
 import org.java_websocket.WebSocket;
 import org.json.JSONObject;
 import ustc.sse.context.AppContext;
+import ustc.sse.tools.dao.ClientDao;
 
 import java.util.Map;
 
@@ -63,14 +63,20 @@ public class ClientHandler extends AbHandler{
         // 发送消息告知客户端关闭
         JSONObject object = new JSONObject();
         object.put("status",0);
+        String clientId = "";
         for (Map.Entry<String, IoSession> entry : AppContext.sessions.entrySet()){
             if (entry.getValue() == session){
-                object.put("client_id",entry.getValue());
+                object.put("client_id",entry.getKey());
+                clientId = entry.getKey();
+                AppContext.sessions.remove(clientId);
                 break;
             }
         }
         for (WebSocket web : AppContext.webSocketSet){
             web.send(object.toString());
         }
+        // 在数据库中更改客户机的状态
+        ClientDao dao = new ClientDao();
+        dao.updateClient(0 ,clientId);
     }
 }
