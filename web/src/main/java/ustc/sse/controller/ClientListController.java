@@ -2,6 +2,7 @@ package ustc.sse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ustc.sse.connection.MessageManager;
 import ustc.sse.tools.dao.ClientDao;
 import ustc.sse.tools.entity.ClientEntity;
 
@@ -31,6 +32,8 @@ public class ClientListController {
     public String clientClose(HttpServletRequest request){
         String clientId = request.getParameter("clientId");
         //处理客户机关机操作
+        MessageManager manager = new MessageManager();
+        manager.sendMessage("close",clientId);
         return "basic_table.jsp";
     }
 
@@ -38,6 +41,8 @@ public class ClientListController {
     public String clientRestart(HttpServletRequest request){
         String clientId = request.getParameter("clientId");
         //处理客户机重启
+        MessageManager manager = new MessageManager();
+        manager.sendMessage("restart",clientId);
         return "basic_table.jsp";
     }
 
