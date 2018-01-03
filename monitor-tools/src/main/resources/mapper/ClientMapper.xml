@@ -51,6 +51,9 @@
         )
     </insert>
 
+    <update id="update">
+        UPDATE t_client_info set client_status = #{0} WHERE id = #{1}
+    </update>
     <update id="updateAccessToken" parameterType="String" >
         update t_service_oauth set access_token = #{1} where client_id = #{0}
     </update>
