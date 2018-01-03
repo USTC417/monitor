@@ -34,7 +34,7 @@ public class ClientListController {
         //处理客户机关机操作
         MessageManager manager = new MessageManager();
         manager.sendMessage("close",clientId);
-        return "basic_table.jsp";
+        return "queryClientList";
     }
 
     @RequestMapping("/clientRestart")
@@ -43,7 +43,7 @@ public class ClientListController {
         //处理客户机重启
         MessageManager manager = new MessageManager();
         manager.sendMessage("restart",clientId);
-        return "basic_table.jsp";
+        return "queryClientList";
     }
 
     @RequestMapping("/clientInfo")
