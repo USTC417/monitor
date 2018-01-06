@@ -66,4 +66,7 @@
         select * FROM t_client_info where client_status = #{0}
     </select>
 
+    <update id="updateClientIp">
+        UPDATE t_client_info set client_ip = #{0} where id = #{1}
+    </update>
 </mapper>
