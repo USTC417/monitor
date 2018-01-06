@@ -46,5 +46,7 @@ public interface ClientMapper {
     public List<ClientEntity> queryClientList(String status);
 
     public int updateClientIp(String ip,String clientId);
+
+    public int updateClientInfoByclientId(String clientName,String clientIp,String clientId);
 }
 
