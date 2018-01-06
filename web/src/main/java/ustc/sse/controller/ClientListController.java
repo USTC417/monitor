@@ -2,8 +2,8 @@ package ustc.sse.controller;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import ustc.sse.connection.MessageManager;
 import ustc.sse.tools.dao.ClientDao;
 import ustc.sse.tools.entity.ClientEntity;
@@ -58,7 +58,7 @@ public class ClientListController {
         return "redirect:queryClientList";
     }
 
-    @RequestMapping("/clientInfo")
+   /* @RequestMapping("/clientInfo")
     public ModelAndView clientInfo(HttpServletRequest request ){
         String clientId = request.getParameter("clientId");
         //处理查询客户机信息
@@ -75,5 +75,44 @@ public class ClientListController {
         view.addObject("clientLogPath",entity.getClientLogPath());
 
         return view;
+    }*/
+
+    /**
+     * 查询客户机详细信息
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping("/clientInfo")
+    public String clientInfo(Model model,HttpServletRequest request ){
+        String clientId = request.getParameter("clientId");
+        //处理查询客户机信息
+        ClientDao dao = new ClientDao();
+        ClientEntity entity = dao.queryEntity(clientId);
+        System.out.println("客户机信息:"+entity);
+        model.addAttribute("client",entity);
+
+        return "specific_table.jsp";
     }
+
+    @RequestMapping("/updateClientInfo")
+    public String updateClientInfo(Model model,HttpServletRequest request){
+        String clientId = request.getParameter("clientId");
+        String clientName = request.getParameter("clientName");
+        String clientIp = request.getParameter("clientIp");
+        System.out.println("clientId"+clientId);
+        System.out.println(clientName);
+        System.out.println(clientIp);
+        ClientDao dao = new ClientDao();
+        int result = dao.updateClientInfoByclientId(clientName,clientIp,clientId);
+        System.out.println("结果:"+result);
+
+        ClientEntity entity = dao.queryEntity(clientId);
+        System.out.println("客户机信息:"+entity);
+        model.addAttribute("client",entity);
+    //    model.addAttribute("result",result);
+        return "specific_table.jsp";
+      //  return "clientInfo";
+    }
+
 }
