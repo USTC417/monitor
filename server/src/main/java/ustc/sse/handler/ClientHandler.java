@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import ustc.sse.context.AppContext;
 import ustc.sse.tools.dao.ClientDao;
 
+import java.net.InetSocketAddress;
 import java.util.Map;
 
 /**
@@ -36,6 +37,11 @@ public class ClientHandler extends AbHandler{
             // 初始化客户机
             String clientId = data.getString("client_id");
             System.out.println("clientId = "+clientId);
+            ClientDao dao = new ClientDao();
+            InetSocketAddress inet = (InetSocketAddress) session.getRemoteAddress();
+            String ip = inet.getAddress().getHostAddress();
+            int port = inet.getPort();
+            dao.updateClientIp(ip+":"+port,clientId);
             AppContext.sessions.put(clientId,session);
             // 向web socket 发送消息
             JSONObject object = new JSONObject();
@@ -56,6 +62,7 @@ public class ClientHandler extends AbHandler{
             // 在数据库中更新客户机的连接状态为1（已连接）
             ClientDao dao = new ClientDao();
             dao.updateClient(1, data.getString("client_id"));
+            dao.updateClientIp(session.getRemoteAddress().toString(),data.getString("client_id"));
             AppContext.sessions.put(data.getString("client_id"),session);
             JSONObject object = new JSONObject();
             object.put("client_id",data.getString("client_id"));
