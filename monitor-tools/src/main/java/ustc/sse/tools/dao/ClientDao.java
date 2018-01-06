@@ -58,4 +58,10 @@ public class ClientDao {
         session.commit();
         return s;
     }
+
+    public int updateClientInfoByclientId(String clientName,String clientIp,String clientId){
+        int result = mapper.updateClientInfoByclientId(clientName,clientIp,clientId);
+        session.commit();
+        return result;
+    }
 }
