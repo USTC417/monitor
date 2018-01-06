@@ -69,4 +69,8 @@
     <update id="updateClientIp">
         UPDATE t_client_info set client_ip = #{0} where id = #{1}
     </update>
+
+    <update id="updateClientInfoByclientId">
+        UPDATE t_client_info set client_name = #{0}, client_ip = #{1} where id = #{2}
+    </update>
 </mapper>
