@@ -77,6 +77,7 @@ public class MinaClient {
         data.put("system","Max os 10.12");
         data.put("ram",8.0);
         data.put("storage",256.5);
+        data.put("client_name","chenhanpingdeMacBook");
         params.put("data",data.toString());
         return params;
     }
