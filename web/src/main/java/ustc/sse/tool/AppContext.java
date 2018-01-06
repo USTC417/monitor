@@ -1,5 +1,7 @@
 package ustc.sse.tool;
 
+import org.apache.mina.core.session.IoSession;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,5 +13,5 @@ import java.util.Map;
  */
 public class AppContext {
     public static Map<String,Object> messageQueue = new HashMap<String, Object>();
-
+    public static IoSession session;
 }

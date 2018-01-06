@@ -30,7 +30,6 @@ public class ClientHandler extends IoHandlerAdapter{
         System.out.println(message.toString());
         CommandHandler handler = HandlerFactory.create(message.toString());
         AppContext.session.write(handler.handler());
-        System.out.println(message.toString());
     }
 
     @Override

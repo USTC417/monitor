@@ -1,11 +1,13 @@
 package ustc.sse.controller;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ustc.sse.connection.MessageManager;
 import ustc.sse.tools.dao.ClientDao;
 import ustc.sse.tools.entity.ClientEntity;
+import ustc.sse.tools.util.Util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,8 +36,13 @@ public class ClientListController {
         String clientId = request.getParameter("clientId");
         //处理客户机关机操作
         MessageManager manager = new MessageManager();
-        manager.sendMessage("close",clientId);
-        return "queryClientList";
+        JSONObject object = new JSONObject();
+        object.put("cmd","close");
+        object.put("client_id",clientId);
+        object.put("cmd_id", Util.createId());
+        manager.sendMessage(object,clientId);
+        //return new ModelAndView("basic_table.jsp");
+        return "redirect:queryClientList";
     }
 
     @RequestMapping("/clientRestart")
@@ -43,8 +50,12 @@ public class ClientListController {
         String clientId = request.getParameter("clientId");
         //处理客户机重启
         MessageManager manager = new MessageManager();
-        manager.sendMessage("restart",clientId);
-        return "queryClientList";
+        JSONObject object = new JSONObject();
+        object.put("cmd","restart");
+        object.put("client_id",clientId);
+        object.put("cmd_id", Util.createId());
+        manager.sendMessage(object,clientId);
+        return "redirect:queryClientList";
     }
 
     @RequestMapping("/clientInfo")
@@ -62,6 +73,7 @@ public class ClientListController {
         view.addObject("clientStorage",entity.getClientStorage());
         view.addObject("clientRam",entity.getClientRam());
         view.addObject("clientLogPath",entity.getClientLogPath());
+
         return view;
     }
 }

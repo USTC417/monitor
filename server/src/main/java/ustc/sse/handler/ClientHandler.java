@@ -51,7 +51,26 @@ public class ClientHandler extends AbHandler{
             }
 
 
-        }else {
+        }
+        else if (event.equals("connect")){
+            // 在数据库中更新客户机的连接状态为1（已连接）
+            ClientDao dao = new ClientDao();
+            dao.updateClient(1, data.getString("client_id"));
+            AppContext.sessions.put(data.getString("client_id"),session);
+            JSONObject object = new JSONObject();
+            object.put("client_id",data.getString("client_id"));
+            object.put("status","1");
+            try {
+                for (WebSocket web : AppContext.webSocketSet){
+                    web.send(object.toString());
+                }
+                System.out.println("发送成功");
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
+
+        }
+        else {
             // 回复命令的消息，直接转发web端
             AppContext.webSession.write(data);
         }

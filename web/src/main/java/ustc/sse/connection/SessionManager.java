@@ -1,6 +1,7 @@
 package ustc.sse.connection;
 import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
+import ustc.sse.tool.AppContext;
 
 import static ustc.sse.tool.AppContext.messageQueue;
 
@@ -32,8 +33,10 @@ public class SessionManager {
     }
 
     public void write(Object msg){
-        System.out.println("给服务器发消息了");
-        session.write(msg);session.write(msg);
+        System.out.println(AppContext.session.getId());
+        AppContext.session.write(msg);
+        System.out.println("给服务器发消息了"+msg.toString());
+
     }
 
     public void addMsgToQueue(Object msg){
@@ -52,6 +55,6 @@ public class SessionManager {
         return messageQueue.get(cmdId);
     }
     public void initSession(IoSession session){
-        SessionManager.session = session;
+        AppContext.session = session;
     }
 }

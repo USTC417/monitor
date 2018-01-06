@@ -3,6 +3,8 @@ package ustc.sse.comand;
 重启client，并且重启MONITOR
  */
 
+import ustc.sse.context.AppContext;
+
 import java.io.IOException;
 
 public class RestartCommandHandler extends SupperCommandHandler implements CommandHandler {
@@ -12,14 +14,20 @@ public class RestartCommandHandler extends SupperCommandHandler implements Comma
     }
 
     public Object handler() {
-        this.restart();
+//        this.restart();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        this.startApp();
+        AppContext.session.closeNow();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        this.startApp();
-        return null;
+        return "";
     }
     public void restart()
     {

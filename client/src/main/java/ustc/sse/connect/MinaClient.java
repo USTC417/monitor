@@ -26,6 +26,8 @@ public class MinaClient {
     private int HEART_BEAT = 10;
     public static String clientId=null;
 
+    //是否第一次连接
+    boolean flag = false;
     public MinaClient(){
         init();
     }
@@ -38,7 +40,12 @@ public class MinaClient {
                 new TextLineCodecFactory(Charset.forName("UTF-8"))));
 
         JSONObject object = new JSONObject();
-        object.put("event","init");
+        if (flag){
+            object.put("event","init");
+
+        }else {
+            object.put("event","connect");
+        }
         JSONObject data = new JSONObject();
         data.put("client_id",clientId);
         object.put("data",data);
@@ -77,6 +84,7 @@ public class MinaClient {
     public void init(){
 
         if(clientId==null) {
+            flag = true;
             Map<String, String> params = createParam();
             HttpRequest request = new HttpRequest();
             String response = request.sendRequest("http://localhost:8080/init", params);

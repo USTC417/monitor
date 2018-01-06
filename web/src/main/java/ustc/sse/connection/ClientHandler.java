@@ -2,6 +2,7 @@ package ustc.sse.connection;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
+import ustc.sse.tool.AppContext;
 
 /**
  * created by chenhanping
@@ -20,6 +21,7 @@ public class ClientHandler extends IoHandlerAdapter{
     @Override
     public void sessionOpened(IoSession session) throws Exception {
         System.out.println("初始化session");
+        AppContext.session = session;
         manager.initSession(session);
     }
 
