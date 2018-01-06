@@ -29,6 +29,7 @@ public class InitServiceImpl implements InitService{
             float ram = (float) data.getDouble("ram");
             float storage = (float) data.getDouble("storage");
             String uuid = Util.createId();
+            String clientName = data.getString("client_name");
             object.put("status",200);
             object.put("error_msg","success");
             object.put("uuid",uuid);
@@ -42,6 +43,7 @@ public class InitServiceImpl implements InitService{
             entity.setCreateTime(new Date());
             entity.setClientStorage(storage);
             entity.setClientId(uuid);
+            entity.setClientName(clientName);
             //entity = (ClientEntity) Util.parseJavaObject(data.toString(),ClientEntity.class);
             ClientDao dao = new ClientDao();
             dao.add(entity);
